@@ -7,6 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 import org.jetbrains.annotations.NotNull;
 
@@ -23,10 +24,14 @@ public class TpDeathCommand implements CommandExecutor {
                         if (lastDeathLocation != null) {
                             if (lastDeathLocation.getY() < -60) lastDeathLocation.setY(-60);
                             player.setVelocity(new Vector(0, 0, 0));
-                            player.setGameMode(GameMode.SPECTATOR);
                             player.teleport(lastDeathLocation.add(0.5, 0, 0.5));
                             player.sendMessage("§aDu wurdest zum Todespunkt von§6 " + deathPlayer.getName() + " §ateleportiert (Y>-60)");
-
+                            (new BukkitRunnable() {
+                                @Override
+                                public void run() {
+                                    player.setGameMode(GameMode.SPECTATOR);
+                                }
+                            }).runTaskLater(CansteinSupportUtils.getInstance(), 5);
                         } else
                             player.sendMessage("§cDer*die Spieler*n §6" + deathPlayer.getName() + " $eist noch nie gestorben. Du kannst gratulieren!");
                     } else player.sendMessage("§cDas ist kein Spielername");
