@@ -1,0 +1,9 @@
+name: CansteinUtils
+version: '${project.version}'
+main: me.cookieblaster.cansteinutlis
+api-version: '1.19'
+
+commands:
+  tpdeath:
+    syntax: "/tpdeath <player>"
+    description: "Dieser Command teleportiert den Sender zur letzten Todesposition des übergebenen Spielers und setzt den teleportierten in Gamemode Spectator."
