@@ -2,7 +2,7 @@ package me.cookieblaster.cansteinsupportutils;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class CansteinUtils extends JavaPlugin {
+public final class CansteinSupportUtils extends JavaPlugin {
 
     @Override
     public void onEnable() {

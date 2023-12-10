@@ -1,6 +1,6 @@
-name: CansteinUtils
+name: CansteinSupportUtils
 version: '${project.version}'
-main: me.cookieblaster.cansteinutlis
+main: me.cookieblaster.cansteinsupportutlis
 api-version: '1.19'
 
 commands:

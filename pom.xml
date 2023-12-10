@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>me.cookieblaster</groupId>
-  <artifactId>cansteinutil</artifactId>
+  <artifactId>cansteinsupportutils</artifactId>
   <version>0.1</version>
   <packaging>jar</packaging>
 
-  <name>CansteinUtil</name>
+  <name>CansteinSupportUtils</name>
 
   <properties>
     <java.version>1.8</java.version>

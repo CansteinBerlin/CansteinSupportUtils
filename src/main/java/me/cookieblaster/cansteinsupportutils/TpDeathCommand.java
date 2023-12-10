@@ -1,4 +1,4 @@
-package me.cookieblaster.cansteinutils;
+package me.cookieblaster.cansteinsupportutils;
 
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 public class TpDeathCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
-        if (commandSender.hasPermission("cansteinutils.tpdeath")) {
+        if (commandSender.hasPermission("cansteinsupportutils.tpdeath")) {
             if (commandSender instanceof Player) {
                 Player player = (Player) commandSender;
                 if (strings.length == 1) {
