@@ -1,5 +1,7 @@
-package me.cookieblaster.cansteinsupportutils;
+package me.cookieblaster.cansteinsupportutils.commands;
 
+import me.cookieblaster.cansteinsupportutils.CansteinSupportUtils;
+import me.cookieblaster.cansteinsupportutils.utils.ConfigUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
@@ -25,7 +27,7 @@ public class TpDeathCommand implements CommandExecutor {
                             if (lastDeathLocation.getY() < -60) lastDeathLocation.setY(-60);
                             player.setVelocity(new Vector(0, 0, 0));
                             player.teleport(lastDeathLocation.add(0.5, 0, 0.5));
-                            player.sendMessage("§aDu wurdest zum Todespunkt von§6 " + deathPlayer.getName() + " §ateleportiert (Y>-60)");
+                            player.sendMessage(ConfigUtil.getPrefixedTrans("commands.tpDeath.success", "player", deathPlayer.getName()));
                             (new BukkitRunnable() {
                                 @Override
                                 public void run() {
@@ -33,11 +35,11 @@ public class TpDeathCommand implements CommandExecutor {
                                 }
                             }).runTaskLater(CansteinSupportUtils.getInstance(), 5);
                         } else
-                            player.sendMessage("§cDer*die Spieler*n §6" + deathPlayer.getName() + " $eist noch nie gestorben. Du kannst gratulieren!");
-                    } else player.sendMessage("§cDas ist kein Spielername");
-                } else player.sendMessage("§cBitte ein Spielername");
-            } else commandSender.sendMessage("Du bist kein Lebewesen");
-        } else commandSender.sendMessage("$cDu hast keine Rechte");
+                            player.sendMessage(ConfigUtil.getPrefixedTrans("commands.tpDeath.failed", "player", deathPlayer.getName()));
+                    } else player.sendMessage(ConfigUtil.getPrefixedTrans("commands.playerNotFound"));
+                } else player.sendMessage(ConfigUtil.getPrefixedTrans("commands.invalidSyntax"));
+            } else commandSender.sendMessage(ConfigUtil.getPrefixedTrans("commands.noPlayer"));
+        } else commandSender.sendMessage(ConfigUtil.getPrefixedTrans("commands.noPermission"));
         return true;
     }
 }

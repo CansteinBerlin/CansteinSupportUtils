@@ -1,0 +1,12 @@
+prefix: "&8[&bSupportUtils&8] "
+
+lang:
+  commands:
+    noPermission: "&cDu hast keine Rechte für diesen Command. Ping im Discord Robert und frag ihn ;)"
+    noPlayer: "&cDu musst ein Spieler sein, um diesen Command auszuführen. (Weg von der Konsole, Robert)"
+    invalidSyntax: "&cDu hast den Command falsch geschrieben"
+    playerNotFound: "&cDer Spieler &6%player% &ckonnte nicht gefunden werden"
+
+    tpDeath:
+      success: "&aDu wurdest zum Todespunkt von &6%player% &ateleportiert (Y>-60)"
+      failed: "&cDer*die Spieler*n &6%player% &cist noch nie gestorben. Du kannst gratulieren!"
