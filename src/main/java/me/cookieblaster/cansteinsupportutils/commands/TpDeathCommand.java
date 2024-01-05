@@ -36,7 +36,8 @@ public class TpDeathCommand implements CommandExecutor {
                             }).runTaskLater(CansteinSupportUtils.getInstance(), 5);
                         } else
                             player.sendMessage(ConfigUtil.getPrefixedTrans("commands.tpDeath.failed", "player", deathPlayer.getName()));
-                    } else player.sendMessage(ConfigUtil.getPrefixedTrans("commands.playerNotFound"));
+                    } else
+                        player.sendMessage(ConfigUtil.getPrefixedTrans("commands.playerNotFound", "player", strings[0]));
                 } else player.sendMessage(ConfigUtil.getPrefixedTrans("commands.invalidSyntax"));
             } else commandSender.sendMessage(ConfigUtil.getPrefixedTrans("commands.noPlayer"));
         } else commandSender.sendMessage(ConfigUtil.getPrefixedTrans("commands.noPermission"));

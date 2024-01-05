@@ -10,3 +10,20 @@ lang:
     tpDeath:
       success: "&aDu wurdest zum Todespunkt von &6%player% &ateleportiert (Y>-60)"
       failed: "&cDer*die Spieler*n &6%player% &cist noch nie gestorben. Du kannst gratulieren!"
+
+    deathHistory:
+      invalidSyntax: "&cFalscher Syntax: &6/%command% (Spieler)"
+      base: "&a%datum% "
+      reset: "[&c[zurücksetzen]](run_command=/inventoryreset %params%) "
+      lookup: "[&6[ansehen]](run_command=/inventoryshow %params%) "
+      header: "==Inventare von %player%=="
+
+    inventoryReset:
+      success: "&aDas Inventar von %player% wurde zurückgesetzt"
+      invalidSyntax: "&cFalscher Syntax: &6/%command% <Spieler> <Zeitpunkt>"
+      timestamp: "&cDer Spieler ist am Zeitpunkt %timestamp% nicht gestorben"
+
+    inventoryShow:
+      success: "&aDir wurde das Inventar von %player% angezeigt"
+      invalidSyntax: "&cFalscher Syntax: &6/%command% <Spieler> <Zeitpunkt>"
+      timestamp: "&cDer Spieler ist am Zeitpunkt %timestamp% nicht gestorben"

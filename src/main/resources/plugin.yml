@@ -7,3 +7,12 @@ commands:
   tpdeath:
     syntax: "/tpdeath <player>"
     description: "Dieser Command teleportiert den Sender zur letzten Todesposition des übergebenen Spielers und setzt den teleportierten in Gamemode Spectator."
+  deathHistory:
+    syntax: "/deathHistory (player)"
+    description: "Dieser Command zeigt die letzten Tode eines Spielers an"
+  inventoryReset:
+    syntax: "/inventoryReset <player> <timestamp>"
+    description: "Dieser Command setzt das Inventar auf den Tod am übergebenen Zeitpunkt zurück"
+  inventoryShow:
+    syntax: "/inventoryShow <player> <timestamp>"
+    description: "Dieser Command zeigt das Inventar des gegebenen Spielers am gegebenen Zeitpunkt an."
