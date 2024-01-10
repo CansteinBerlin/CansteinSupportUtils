@@ -26,12 +26,14 @@ public class TpDeathCommand implements CommandExecutor {
                         if (lastDeathLocation != null) {
                             if (lastDeathLocation.getY() < -60) lastDeathLocation.setY(-60);
                             player.setVelocity(new Vector(0, 0, 0));
+                            player.setCanPickupItems(false);
                             player.teleport(lastDeathLocation.add(0.5, 0, 0.5));
                             player.sendMessage(ConfigUtil.getPrefixedTrans("commands.tpDeath.success", "player", deathPlayer.getName()));
                             (new BukkitRunnable() {
                                 @Override
                                 public void run() {
                                     player.setGameMode(GameMode.SPECTATOR);
+                                    player.setCanPickupItems(true);
                                 }
                             }).runTaskLater(CansteinSupportUtils.getInstance(), 5);
                         } else

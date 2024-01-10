@@ -43,7 +43,7 @@ public class InventoryShowCommand implements CommandExecutor {
             return true;
         }
 
-        Inventory showInventory = Bukkit.createInventory(null, 9 * 6, player.getName());
+        Inventory showInventory = Bukkit.createInventory(null, 9 * 6, player.getName() + "´s Inventory");
         for (int i = 0; i < 9; i++) {
             showInventory.setItem(9 * 3 + i, timedInventorySave.getInventory()[i]);
         }
@@ -54,7 +54,7 @@ public class InventoryShowCommand implements CommandExecutor {
             showInventory.setItem(9 * 4 + 3 - (i % 9), timedInventorySave.getInventory()[i]);
         }
         showInventory.setItem(9 * 4 + 4, timedInventorySave.getInventory()[40]);
-        player.openInventory(showInventory);
+        ((Player) commandSender).openInventory(showInventory);
 
         commandSender.sendMessage(ConfigUtil.getPrefixedTrans("commands.inventoryShow.success", "player", strings[0]));
         return true;
