@@ -11,6 +11,8 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+
 public final class CansteinSupportUtils extends JavaPlugin {
 
     private static CansteinSupportUtils instance;
@@ -20,7 +22,10 @@ public final class CansteinSupportUtils extends JavaPlugin {
     public void onEnable() {
         instance = this;
         ConfigurationSerialization.registerClass(TimedInventorySave.class);
-        saveResource("config.yml", false); //ggf ändern!
+        if (!new File(getDataFolder(), "config.yml").exists()) {
+            saveResource("config.yml", false);
+            reloadConfig();
+        }
         PREFIX = ConfigUtil.getColoredStringFromConfig("prefix");
         getCommand("tpdeath").setExecutor(new TpDeathCommand());
         getCommand("deathHistory").setExecutor(new DeathHistoryCommand());
