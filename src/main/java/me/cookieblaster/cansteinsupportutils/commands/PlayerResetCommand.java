@@ -1,6 +1,6 @@
 package me.cookieblaster.cansteinsupportutils.commands;
 
-import me.cookieblaster.cansteinsupportutils.storage.InventoryDeathConfig;
+import me.cookieblaster.cansteinsupportutils.storage.PlayerDeathConfig;
 import me.cookieblaster.cansteinsupportutils.storage.TimedInventorySave;
 import me.cookieblaster.cansteinsupportutils.utils.ConfigUtil;
 import org.bukkit.Bukkit;
@@ -10,7 +10,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class InventoryResetCommand implements CommandExecutor {
+public class PlayerResetCommand implements CommandExecutor {
     @Override
     public boolean onCommand(@NotNull CommandSender commandSender, @NotNull Command command, @NotNull String s, @NotNull String[] strings) {
         if (!commandSender.hasPermission("cansteinsupportutils.inventoryReset")) {
@@ -35,13 +35,15 @@ public class InventoryResetCommand implements CommandExecutor {
             return true;
         }
 
-        InventoryDeathConfig inventoryDeathConfig = new InventoryDeathConfig(player);
-        TimedInventorySave timedInventorySave = inventoryDeathConfig.getInventory(Long.parseLong(strings[1]));
+        PlayerDeathConfig playerDeathConfig = new PlayerDeathConfig(player.getUniqueId());
+        TimedInventorySave timedInventorySave = playerDeathConfig.getInventory(Long.parseLong(strings[1]));
         if (timedInventorySave == null) {
             commandSender.sendMessage(ConfigUtil.getPrefixedTrans("commands.inventoryReset.timestamp", "timestamp", strings[1]));
             return true;
         }
         player.getInventory().setContents(timedInventorySave.getInventory());
+        player.setExp(timedInventorySave.getExperience());
+        player.setLevel(timedInventorySave.getLevel());
         commandSender.sendMessage(ConfigUtil.getPrefixedTrans("commands.inventoryReset.success", "player", strings[0]));
         return true;
     }

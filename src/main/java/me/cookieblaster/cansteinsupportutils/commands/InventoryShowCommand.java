@@ -1,9 +1,10 @@
 package me.cookieblaster.cansteinsupportutils.commands;
 
-import me.cookieblaster.cansteinsupportutils.storage.InventoryDeathConfig;
+import me.cookieblaster.cansteinsupportutils.storage.PlayerDeathConfig;
 import me.cookieblaster.cansteinsupportutils.storage.TimedInventorySave;
 import me.cookieblaster.cansteinsupportutils.utils.ConfigUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -26,18 +27,14 @@ public class InventoryShowCommand implements CommandExecutor {
             commandSender.sendMessage(ConfigUtil.getPrefixedTrans("commands.inventoryShow.invalidSyntax", "command", command.getName()));
             return true;
         }
-        Player player = Bukkit.getPlayer(strings[0]);
-        if (player == null) {
-            commandSender.sendMessage(ConfigUtil.getPrefixedTrans("commands.playerNotFound", "player", strings[0]));
-            return true;
-        }
+        OfflinePlayer player = Bukkit.getOfflinePlayer(strings[0]);
         if (!isLong(strings[1])) {
             commandSender.sendMessage(ConfigUtil.getPrefixedTrans("commands.inventoryShow.invalidSyntax", "command", command.getName()));
             return true;
         }
 
-        InventoryDeathConfig inventoryDeathConfig = new InventoryDeathConfig(player);
-        TimedInventorySave timedInventorySave = inventoryDeathConfig.getInventory(Long.parseLong(strings[1]));
+        PlayerDeathConfig playerDeathConfig = new PlayerDeathConfig(player.getUniqueId());
+        TimedInventorySave timedInventorySave = playerDeathConfig.getInventory(Long.parseLong(strings[1]));
         if (timedInventorySave == null) {
             commandSender.sendMessage(ConfigUtil.getPrefixedTrans("commands.inventoryShow.timestamp", "timestamp", strings[1]));
             return true;

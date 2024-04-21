@@ -2,25 +2,21 @@ package me.cookieblaster.cansteinsupportutils.storage;
 
 import me.cookieblaster.cansteinsupportutils.CansteinSupportUtils;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Player;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
-public class InventoryDeathConfig { //Die Configklasse, die die Config speichert und abrufbar macht -> gibt es für jeden Spieler einmal
-    private final Player player;
+public class PlayerDeathConfig { //Die Configklasse, die die Config speichert und abrufbar macht -> gibt es für jeden Spieler einmal
+    private final UUID uuid;
     private File file;
     private YamlConfiguration config;
     private HashMap<Long, TimedInventorySave> data;
 
-    public InventoryDeathConfig(Player player) {
-        this.player = player;
+    public PlayerDeathConfig(UUID uuid) {
+        this.uuid = uuid;
         String dateiname;
-        dateiname = "inv_save/" + player.getUniqueId().toString() + ".yml";
+        dateiname = "inv_save/" + uuid.toString() + ".yml";
         file = new File(CansteinSupportUtils.getInstance().getDataFolder(), dateiname);
         if (!file.exists()) {
             file.getParentFile().mkdirs();

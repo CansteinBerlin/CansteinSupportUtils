@@ -1,10 +1,11 @@
 package me.cookieblaster.cansteinsupportutils.commands;
 
 import de.themoep.minedown.adventure.MineDown;
-import me.cookieblaster.cansteinsupportutils.storage.InventoryDeathConfig;
+import me.cookieblaster.cansteinsupportutils.storage.PlayerDeathConfig;
 import me.cookieblaster.cansteinsupportutils.storage.TimedInventorySave;
 import me.cookieblaster.cansteinsupportutils.utils.ConfigUtil;
 import org.bukkit.Bukkit;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -33,17 +34,17 @@ public class DeathHistoryCommand implements CommandExecutor {
             commandSender.sendMessage(ConfigUtil.getPrefixedTrans("commands.deathCommand.invalidSyntax", "command", command.getName()));
             return true;
         }
-        Player deathPlayer;
+        OfflinePlayer deathPlayer;
         if (strings.length == 0) deathPlayer = executor;
         else {
-            deathPlayer = Bukkit.getPlayer(strings[0]);
+            deathPlayer = Bukkit.getOfflinePlayer(strings[0]);
             if (deathPlayer == null) {
                 commandSender.sendMessage(ConfigUtil.getPrefixedTrans("commands.playerNotFound", "player", strings[0]));
                 return true;
             }
         }
 
-        InventoryDeathConfig deathConfig = new InventoryDeathConfig(deathPlayer);
+        PlayerDeathConfig deathConfig = new PlayerDeathConfig(deathPlayer.getUniqueId());
         List<Long> deathTimestamps = deathConfig.getTimestamps();
         Collections.reverse(deathTimestamps);
         commandSender.sendMessage(ConfigUtil.getTrans("commands.deathHistory.header", "player", deathPlayer.getName()));
@@ -53,7 +54,7 @@ public class DeathHistoryCommand implements CommandExecutor {
         return false;
     }
 
-    private void informationToPlayer(Player executor, TimedInventorySave inventory, Player deathPlayer) {
+    private void informationToPlayer(Player executor, TimedInventorySave inventory, OfflinePlayer deathPlayer) {
         Date deathTimestamp = new Date(inventory.getTimestamp());
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.YYYY HH:mm:ss");
         String text = ConfigUtil.getTrans("commands.deathHistory.base").replace("%datum%", dateFormat.format(deathTimestamp));
@@ -62,6 +63,9 @@ public class DeathHistoryCommand implements CommandExecutor {
         }
         if (executor.hasPermission("cansteinsupportutils.inventoryShow"))
             text = text + ConfigUtil.getStringFromConfig("lang.commands.deathHistory.lookup").replace("%params%", deathPlayer.getName() + " " + inventory.getTimestamp());
+        if (executor.hasPermission("cansteinsupportutils.tpdeath") && inventory.getLocation() != null) {
+            text = text + ConfigUtil.getStringFromConfig("lang.commands.deathHistory.teleport").replace("%params%", deathPlayer.getName() + " " + inventory.getTimestamp());
+        }
         executor.sendMessage(new MineDown(text).toComponent());
     }
 }

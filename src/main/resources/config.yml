@@ -5,17 +5,20 @@ lang:
     noPermission: "&cDu hast keine Rechte für diesen Command. Ping im Discord Robert und frag ihn ;)"
     noPlayer: "&cDu musst ein Spieler sein, um diesen Command auszuführen. (Weg von der Konsole, Robert)"
     invalidSyntax: "&cDu hast den Command falsch geschrieben"
-    playerNotFound: "&cDer Spieler &6%player% &ckonnte nicht gefunden werden"
+    playerNotFound: "&cDer Spieler &6%player% &ckonnte nicht gefunden werden oder ist nicht online"
 
     tpDeath:
       success: "&aDu wurdest zum Todespunkt von &6%player% &ateleportiert (Y>-60)"
-      failed: "&cDer*die Spieler*n &6%player% &cist noch nie gestorben. Du kannst gratulieren!"
+      invalidSyntax: "&cFalscher Syntax: &6/%command% <Spieler> <Zeitpunkt>"
+      timestamp: "&cDer Spieler ist am Zeitpunkt %timestamp% nicht gestorben"
+      noDeathLocation: "&cFür den Spieler liegt kein Todespunkt vor"
 
     deathHistory:
       invalidSyntax: "&cFalscher Syntax: &6/%command% (Spieler)"
       base: "&a%datum% "
       reset: "[&c[zurücksetzen]](run_command=/inventoryreset %params%) "
       lookup: "[&6[ansehen]](run_command=/inventoryshow %params%) "
+      teleport: "[&b[teleportieren]](run_command=/tpdeath %params%) "
       header: "==Inventare von %player%=="
 
     inventoryReset:
