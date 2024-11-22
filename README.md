@@ -1,12 +1,12 @@
 # CansteinSupportUtils
 
-a plugin to better help Levin with his deaths.
+A plugin designed to simplify managing player deaths by saving essential data and providing tools for restoration and review.
 
 ## Features
 
-- Automatic saving of inventory, location and levels on death
-- View of the last 10 deaths
-- Resetting the respective inventory and leveling, viewing the inventory and teleporting to the point of death
+- **Automatic Data Saving**: Inventory, location, and experience levels are saved upon death
+- **Death History**: View the last 10 deaths, complete with timestamps.
+- **Restoration Tools**: Reset inventory and levels, review saved inventory, or teleport to the exact death location.
 
 ## Commands
 
